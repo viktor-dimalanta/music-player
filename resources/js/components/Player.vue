@@ -37,6 +37,11 @@
                 <use xlink:href="#icon-play" v-else></use>
               </svg>
             </div>
+            <div class="player-controls__item" @click="playRandomTrack">
+              <svg class="icon">
+                <use xlink:href="#icon-infinity"></use>
+              </svg>
+            </div>
           </div>
         </div>
         <div class="progress" ref="progress" style="height: 130px;padding: 16px;">
@@ -211,6 +216,16 @@ methods: {
       this.audio.pause();
       this.isTimerPlaying = false;
     }
+  },
+  playRandomTrack() {
+      // Get a random index within the range of your tracks array
+      const randomIndex = Math.floor(Math.random() * this.tracks.length);
+      
+      // Set the random track as the current track
+      this.currentTrackIndex = randomIndex;
+      
+      // Play the selected track
+      this.play();
   },
   generateTime() {
     let width = (100 / this.audio.duration) * this.audio.currentTime;
