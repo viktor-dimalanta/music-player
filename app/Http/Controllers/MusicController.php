@@ -3,18 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Song;
 
 class MusicController extends Controller
 {
     /**
-     * Simulate playing a song.
+     * Display a listing of the songs.
      *
      * @return \Illuminate\Http\Response
      */
-    public function play(Request $request)
+    public function index()
     {
-        // Implement logic to start playing the song
-        return response()->json(['message' => 'Song is playing'], 200);
+        // Fetch songs from the database
+        $songs = Song::all();
+
+        // Pass the songs data to the view
+        return view('music.index', ['songs' => $songs]);
+    }
+
+    /**
+     * Play a specific song.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function play($id)
+    {
+        // Logic to play the song with the given ID
+        $song = Song::findOrFail($id);
+
+        // Return a response (JSON, redirect, etc.)
     }
 
     /**
@@ -22,32 +40,35 @@ class MusicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pause(Request $request)
+    public function pause()
     {
-        // Implement logic to pause the currently playing song
-        return response()->json(['message' => 'Song is paused'], 200);
+        // Logic to pause the currently playing song
+
+        // Return a response (JSON, redirect, etc.)
     }
 
     /**
-     * Select the next song in the playlist.
+     * Play the next song in the playlist.
      *
      * @return \Illuminate\Http\Response
      */
-    public function next(Request $request)
+    public function next()
     {
-        // Implement logic to select the next song
-        return response()->json(['message' => 'Next song selected'], 200);
+        // Logic to select and play the next song
+
+        // Return a response (JSON, redirect, etc.)
     }
 
     /**
-     * Select the previous song in the playlist.
+     * Play the previous song in the playlist.
      *
      * @return \Illuminate\Http\Response
      */
-    public function previous(Request $request)
+    public function previous()
     {
-        // Implement logic to select the previous song
-        return response()->json(['message' => 'Previous song selected'], 200);
+        // Logic to select and play the previous song
+
+        // Return a response (JSON, redirect, etc.)
     }
 
     /**
@@ -55,9 +76,10 @@ class MusicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function randomPlay(Request $request)
+    public function randomPlay()
     {
-        // Implement logic to play a random song
-        return response()->json(['message' => 'Random song is playing'], 200);
+        // Logic to play a random song
+
+        // Return a response (JSON, redirect, etc.)
     }
 }
